@@ -8,7 +8,7 @@ function Jumbotron({ props }) {
         Zastępstwa ZSTIO
       </h1>
       <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
-        {props.form.time}
+        {props?.form?.time}
       </p>
       <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
         <button
