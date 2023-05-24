@@ -6,7 +6,15 @@ import axios from "axios";
 import { parse } from "node-html-parser";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
+import ThemeChanger from "./components/ThemeChanger";
+import { useState } from "react";
 export default function Home(props) {
+  const [checkedTeachers, setCheckedTeachers] = useState([]);
+  const handleCheckboxChange = (checkedItems) => {
+    // Wykonaj odpowiednie działania na zaznaczonych elementach
+    console.log(checkedItems);
+    setCheckedTeachers(checkedItems);
+  };
   return (
     <>
       <Head>
@@ -18,9 +26,10 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
+        <ThemeChanger />
         <Jumbotron props={props} />
-        <Dropdown />
-        <Content props={props} />
+        <Dropdown props={props} onCheckboxChange={handleCheckboxChange} />
+        <Content props={props} checkedTeachers={checkedTeachers} />
         <Footer />
       </Layout>
     </>

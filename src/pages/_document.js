@@ -4,7 +4,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-      <body className="dark">
+      <body>
         <Main />
         <NextScript />
       </body>

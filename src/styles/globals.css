@@ -5,3 +5,41 @@
 body {
   overflow-x: hidden;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #111827 #dfe9eb;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 2px;
+  width: 2px;
+  height: 2px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #111827;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #212f4d;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #212f4d;
+}
