@@ -1,6 +1,7 @@
-# zstio-zastepstwa
+# Zastępstwa ZSTIO
 
-[Wypróbuj tutaj](https://zastepstwa-zstio.netlify.app/)
+A refreshed version of the [substitution page](http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html) for ZSTIO, supported by Web Scrapping.
+[TRY](https://zastepstwa-zstio.netlify.app/)
 
 
 ## Tech Stack
