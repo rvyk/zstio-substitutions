@@ -1,7 +1,6 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-function Dropdown({ props, onCheckboxChange }) {
+function DropdownTeachers({ props, onCheckboxChange }) {
   const [searchTeachers, setSearchTeachers] = useState("");
 
   const handleSearch = (event) => {
@@ -28,7 +27,7 @@ function Dropdown({ props, onCheckboxChange }) {
 
   return (
     <div
-      id="dropdownSearch"
+      id="dropdownTeacher"
       className="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700"
     >
       <div className="p-3">
@@ -64,7 +63,7 @@ function Dropdown({ props, onCheckboxChange }) {
       </div>
       <ul
         className="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
-        aria-labelledby="dropdownSearchButton"
+        aria-labelledby="dropdownSearchTeacher"
       >
         {props?.form?.tables.map((table) => {
           const uniqueTeachers = [];
@@ -106,4 +105,4 @@ function Dropdown({ props, onCheckboxChange }) {
   );
 }
 
-export default Dropdown;
+export default DropdownTeachers;

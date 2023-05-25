@@ -1,18 +1,23 @@
 import Head from "next/head";
 import Jumbotron from "./components/Jumbotron";
-import Dropdown from "./components/Dropdown";
+import DropdownTeachers from "./components/DropdownTeachers";
 import Content from "./components/Content";
 import axios from "axios";
 import { parse } from "node-html-parser";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
 import ThemeChanger from "./components/ThemeChanger";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableSkeleton from "./components/TableSkeleton";
+import DropdownBranch from "./components/DropdownBranch";
 export default function Home(props) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
+  const [checkedBranches, setCheckedBranches] = useState([]);
   const handleCheckboxChange = (checkedItems) => {
     setCheckedTeachers(checkedItems);
+  };
+  const handleCheckboxChangeBranch = (checkedItems) => {
+    setCheckedBranches(checkedItems);
   };
   return (
     <>
@@ -27,11 +32,22 @@ export default function Home(props) {
       <Layout>
         <ThemeChanger />
         <Jumbotron props={props} />
-        <Dropdown props={props} onCheckboxChange={handleCheckboxChange} />
+        <DropdownTeachers
+          props={props}
+          onCheckboxChange={handleCheckboxChange}
+        />
+        <DropdownBranch
+          props={props}
+          onCheckboxChangeBranch={handleCheckboxChangeBranch}
+        />
         {props.error == true ? (
           <TableSkeleton />
         ) : (
-          <Content props={props} checkedTeachers={checkedTeachers} />
+          <Content
+            props={props}
+            checkedTeachers={checkedTeachers}
+            checkedBranches={checkedBranches}
+          />
         )}
         <Footer />
       </Layout>
