@@ -41,51 +41,41 @@ export default function Home(props) {
 
 export const getServerSideProps = async () => {
   try {
-    const res = await axios.get(
+    const response = await axios.get(
       "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
     );
-    const document = parse(res.data);
+    const document = parse(response.data);
     const time = document.querySelector("h2").textContent.trim();
     const tables = Array.from(document.querySelectorAll("table")).map(
       (table) => {
-        const tableObject = {};
-        tableObject.time = table
-          .querySelector("tr:first-child")
-          .textContent.trim();
-        tableObject.zastepstwa = Array.from(table.querySelectorAll("tr"))
-          .slice(1)
-          .map((row) => {
-            return Array.from(row.querySelectorAll("td")).reduce(
-              (obj, cell, index) => {
-                const value = cell.textContent.trim();
-                switch (index) {
-                  case 0:
-                    obj.lesson = value;
-                    break;
-                  case 1:
-                    obj.teacher = value;
-                    break;
-                  case 2:
-                    obj.branch = value;
-                    break;
-                  case 3:
-                    obj.subject = value;
-                    break;
-                  case 4:
-                    obj.class = value;
-                    break;
-                  case 5:
-                    obj.case = value;
-                    break;
-                  case 6:
-                    obj.message = value;
-                    break;
-                }
-                return obj;
-              },
-              {}
-            );
-          });
+        const tableObject = {
+          time: table.querySelector("tr:first-child").textContent.trim(),
+          zastepstwa: Array.from(table.querySelectorAll("tr"))
+            .slice(1)
+            .map((row) => {
+              const [
+                lesson,
+                teacher,
+                branch,
+                subject,
+                classValue,
+                caseValue,
+                message,
+              ] = Array.from(row.querySelectorAll("td")).map((cell) =>
+                cell.textContent.trim()
+              );
+              return {
+                lesson,
+                teacher,
+                branch,
+                subject,
+                class: classValue,
+                case: caseValue,
+                message,
+              };
+            }),
+        };
+
         tableObject.zastepstwa = tableObject.zastepstwa.filter(
           (obj) => JSON.stringify(obj) !== JSON.stringify({})
         );
@@ -93,9 +83,11 @@ export const getServerSideProps = async () => {
         return tableObject;
       }
     );
+
     const form = { time, tables };
+
     return { props: { form } };
-  } catch (e) {
+  } catch (error) {
     return {
       props: {
         error: true,
