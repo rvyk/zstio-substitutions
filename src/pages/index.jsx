@@ -8,11 +8,10 @@ import Layout from "./components/Layout";
 import Footer from "./components/Footer";
 import ThemeChanger from "./components/ThemeChanger";
 import { useState } from "react";
+import TableSkeleton from "./components/TableSkeleton";
 export default function Home(props) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
   const handleCheckboxChange = (checkedItems) => {
-    // Wykonaj odpowiednie działania na zaznaczonych elementach
-    console.log(checkedItems);
     setCheckedTeachers(checkedItems);
   };
   return (
@@ -29,7 +28,11 @@ export default function Home(props) {
         <ThemeChanger />
         <Jumbotron props={props} />
         <Dropdown props={props} onCheckboxChange={handleCheckboxChange} />
-        <Content props={props} checkedTeachers={checkedTeachers} />
+        {props.error == true ? (
+          <TableSkeleton />
+        ) : (
+          <Content props={props} checkedTeachers={checkedTeachers} />
+        )}
         <Footer />
       </Layout>
     </>
@@ -37,54 +40,67 @@ export default function Home(props) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get(
-    "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
-  );
-  const document = parse(res.data);
-  const time = document.querySelector("h2").textContent.trim();
-  const tables = Array.from(document.querySelectorAll("table")).map((table) => {
-    const tableObject = {};
-    tableObject.time = table.querySelector("tr:first-child").textContent.trim();
-    tableObject.zastepstwa = Array.from(table.querySelectorAll("tr"))
-      .slice(1)
-      .map((row) => {
-        return Array.from(row.querySelectorAll("td")).reduce(
-          (obj, cell, index) => {
-            const value = cell.textContent.trim();
-            switch (index) {
-              case 0:
-                obj.lesson = value;
-                break;
-              case 1:
-                obj.teacher = value;
-                break;
-              case 2:
-                obj.branch = value;
-                break;
-              case 3:
-                obj.subject = value;
-                break;
-              case 4:
-                obj.class = value;
-                break;
-              case 5:
-                obj.case = value;
-                break;
-              case 6:
-                obj.message = value;
-                break;
-            }
-            return obj;
-          },
-          {}
-        );
-      });
-    tableObject.zastepstwa = tableObject.zastepstwa.filter(
-      (obj) => JSON.stringify(obj) !== JSON.stringify({})
+  try {
+    const res = await axios.get(
+      "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
     );
-    tableObject.zastepstwa.sort((a, b) => a.lesson - b.lesson);
-    return tableObject;
-  });
-  const form = { time, tables };
-  return { props: { form } };
+    const document = parse(res.data);
+    const time = document.querySelector("h2").textContent.trim();
+    const tables = Array.from(document.querySelectorAll("table")).map(
+      (table) => {
+        const tableObject = {};
+        tableObject.time = table
+          .querySelector("tr:first-child")
+          .textContent.trim();
+        tableObject.zastepstwa = Array.from(table.querySelectorAll("tr"))
+          .slice(1)
+          .map((row) => {
+            return Array.from(row.querySelectorAll("td")).reduce(
+              (obj, cell, index) => {
+                const value = cell.textContent.trim();
+                switch (index) {
+                  case 0:
+                    obj.lesson = value;
+                    break;
+                  case 1:
+                    obj.teacher = value;
+                    break;
+                  case 2:
+                    obj.branch = value;
+                    break;
+                  case 3:
+                    obj.subject = value;
+                    break;
+                  case 4:
+                    obj.class = value;
+                    break;
+                  case 5:
+                    obj.case = value;
+                    break;
+                  case 6:
+                    obj.message = value;
+                    break;
+                }
+                return obj;
+              },
+              {}
+            );
+          });
+        tableObject.zastepstwa = tableObject.zastepstwa.filter(
+          (obj) => JSON.stringify(obj) !== JSON.stringify({})
+        );
+        tableObject.zastepstwa.sort((a, b) => a.lesson - b.lesson);
+        return tableObject;
+      }
+    );
+    const form = { time, tables };
+    return { props: { form } };
+  } catch (e) {
+    return {
+      props: {
+        error: true,
+        message: "Wystąpił błąd podczas pobierania zastępstw",
+      },
+    };
+  }
 };

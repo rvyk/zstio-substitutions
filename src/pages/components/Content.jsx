@@ -1,5 +1,4 @@
 import React from "react";
-import Dropdown from "./Dropdown";
 function Content({ props, checkedTeachers }) {
   //   console.log(JSON.stringify(props));
   //   console.log(props.form.tables[0].zastepstwa[3]);
@@ -21,7 +20,7 @@ function Content({ props, checkedTeachers }) {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[90%] transition-all">
         {props?.form?.tables.map((table, index) => (
           <table
-            className="w-full text-sm text-left text-gray-500 dark:text-gray-400 transition-all "
+            className="w-full text-sm text-left text-gray-500 dark:text-gray-400 transition-all will-change-transform "
             key={index}
           >
             <caption className="p-5 transition-all text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
