@@ -13,6 +13,17 @@ module.exports = {
     "animate-[fade-in-down_1s_ease-in-out]",
   ],
   plugins: [require("flowbite/plugin"), require("tailwindcss-animated")],
-  theme: {},
   darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        light: {
+          scrollbar: "#2b161b",
+        },
+        dark: {
+          scrollbar: "#111827",
+        },
+      },
+    },
+  },
 };

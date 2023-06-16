@@ -70,7 +70,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                   )}
                 </div>
               </caption>
-              <thead className="text-xs transition-all text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs transition-all text-[#ffffff] bg-[#2B161B] uppercase dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Lekcja
@@ -80,7 +80,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                       onClick={() => {
                         setSortedByTeachers((prevState) => !prevState);
                       }}
-                      className="cursor-pointer flex items-center"
+                      className="cursor-pointer flex items-center "
                     >
                       Nauczyciel
                       <svg
@@ -126,7 +126,11 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                     rowCounter++;
                     return (
                       <tr
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 transition-all"
+                        className={`${
+                          rowCounter % 2 != 0
+                            ? "bg-white dark:bg-gray-800"
+                            : "bg-gray-100 dark:bg-gray-700"
+                        }  border-b dark:border-gray-700 transition-all`}
                         key={index}
                       >
                         <th
