@@ -10,25 +10,25 @@ function NotFound() {
   return (
     <>
       <ThemeChanger />
-      <section class="bg-white dark:bg-gray-900 h-screen flex justify-center items-center flex-col transition-all">
+      <section className="min-h-screen w-screen flex flex-col justify-center items-center bg-[#F7F3F5] dark:bg-gray-900 transition-all">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 transition-all">
           <div class="mx-auto max-w-screen-sm text-center">
-            <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">
+            <h1 class="mb-4 text-7xl text-[#2B161B] tracking-tight font-extrabold lg:text-9xl dark:text-white">
               404
             </h1>
-            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
-              Czegoś brakuje...
+            <p class="mb-4 text-5xl tracking-tight font-bold md:text-4xl dark:text-white text-[#2B161B]">
+              Strona, której szukasz nie istnieje, przepraszamy.
             </p>
             <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400 transition-all">
               Strona{" "}
-              <span class="bg-gray-100 text-gray-800 transition-all text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+              <span class="bg-gray-200 text-gray-800 transition-all text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
                 {currentPath}
               </span>{" "}
               nie istnieje, czy na pewno wpisałeś dobry adres?
             </p>
             <Link
               href={"/"}
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-[#a91712] hover:text-white hover:border-transparent bg-transparent border-[1px] border-[#a91712] mx-2 sm:my-0 my-2 hover:bg-[#73110e] transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-transparent font-medium text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-transparent dark:text-blue-600 hover:dark:text-white dark:border-blue-600 dark:hover:bg-blue-700"
             >
               <svg
                 aria-hidden="true"
