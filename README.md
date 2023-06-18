@@ -1,4 +1,4 @@
-# Zastępstwa ZSTIO
+# Substitutions ZSTIO
 
 A refreshed version of the [substitution page](http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html) for ZSTIO, operated by Web Scrapping.
 
