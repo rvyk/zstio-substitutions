@@ -11,17 +11,17 @@ function NotFound() {
     <>
       <ThemeChanger />
       <section className="min-h-screen w-screen flex flex-col justify-center items-center bg-[#F7F3F5] dark:bg-gray-900 transition-all">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 transition-all">
-          <div class="mx-auto max-w-screen-sm text-center">
-            <h1 class="mb-4 text-7xl text-[#2B161B] tracking-tight font-extrabold lg:text-9xl dark:text-white">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 transition-all">
+          <div className="mx-auto max-w-screen-sm text-center">
+            <h1 className="mb-4 text-7xl text-[#2B161B] tracking-tight font-extrabold lg:text-9xl dark:text-white">
               404
             </h1>
-            <p class="mb-4 text-5xl tracking-tight font-bold md:text-4xl dark:text-white text-[#2B161B]">
+            <p className="mb-4 text-5xl tracking-tight font-bold md:text-4xl dark:text-white text-[#2B161B]">
               Strona, której szukasz nie istnieje, przepraszamy.
             </p>
-            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400 transition-all">
+            <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400 transition-all">
               Strona{" "}
-              <span class="bg-gray-200 text-gray-800 transition-all text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+              <span className="bg-gray-200 text-gray-800 transition-all text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
                 {currentPath}
               </span>{" "}
               nie istnieje, czy na pewno wpisałeś dobry adres?
@@ -32,7 +32,7 @@ function NotFound() {
             >
               <svg
                 aria-hidden="true"
-                class="w-5 h-5 mr-2 -ml-1"
+                className="w-5 h-5 mr-2 -ml-1"
                 fill="currentColor"
                 viewBox="0 0 448 512"
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,6 @@
 # Substitutions ZSTIO
 
-A refreshed version of the [substitution page](http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html) for ZSTIO, operated by Web Scrapping.
-
+A refreshed version of the [substitution page](http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html) for [Zespół Szkół Technicznych i Ogólnokształcących](https://zstiojar.edu.pl/), operated by Web Scrapping.
 
 ## Tech Stack
 
