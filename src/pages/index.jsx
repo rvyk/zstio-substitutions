@@ -10,6 +10,8 @@ import ThemeChanger from "./components/ThemeChanger";
 import { useEffect, useState } from "react";
 import TableSkeleton from "./components/TableSkeleton";
 import DropdownBranch from "./components/DropdownBranch";
+import { initFlowbite } from "flowbite";
+
 export default function Home(props) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
   const [checkedBranches, setCheckedBranches] = useState([]);
@@ -19,6 +21,9 @@ export default function Home(props) {
   const handleCheckboxChangeBranch = (checkedItems) => {
     setCheckedBranches(checkedItems);
   };
+  useEffect(() => {
+    initFlowbite();
+  }, []);
   return (
     <>
       <Head>

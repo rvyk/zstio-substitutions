@@ -1,15 +1,7 @@
+import Link from "next/link";
 import React, { useState } from "react";
 function Content({ props, checkedTeachers, checkedBranches }) {
   const [sortedByTeachers, setSortedByTeachers] = useState(false);
-  //   console.log(JSON.stringify(props));
-  //   console.log(props.form.tables[0].zastepstwa[3]);
-
-  //   props.form.tables.map((table) => {
-  //     console.log("DZIEN:", table.time);
-  //     table.zastepstwa.map((zastepstwo) => {
-  //       console.log(zastepstwo);
-  //     });
-  //   });
 
   let filtersTeachers, filtersBranches;
   if (checkedTeachers) {
@@ -129,32 +121,31 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                         className={`${
                           rowCounter % 2 != 0
                             ? "bg-white dark:bg-gray-800"
-                            : "bg-gray-100 dark:bg-gray-700"
+                            : "bg-gray-50 dark:bg-gray-700"
                         }  border-b dark:border-gray-700 transition-all`}
                         key={index}
                       >
-                        <th
-                          scope="row"
-                          className="px-6 py-4 font-medium w-1 text-gray-900 whitespace-nowrap dark:text-white transition-all"
+                        <td
+                          className={`py-4 text-center h-full border-r last:border-none font-semibold dark:border-gray-600`}
                         >
                           {zastepstwo?.lesson}
-                        </th>
-                        <td className="px-6 py-4 break-words w-24">
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.teacher}
                         </td>
-                        <td className="px-6 py-4 break-words w-24">
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.branch}
                         </td>
-                        <td className="px-6 py-4 break-words w-24">
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.subject}
                         </td>
-                        <td className="px-6 py-4 break-words w-24">
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.class}
                         </td>
-                        <td className="px-6 py-4 break-words w-24">
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.case}
                         </td>
-                        <td className="px-6 py-4 break-words w-24">
+                        <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
                           {zastepstwo?.message}
                         </td>
                       </tr>
@@ -175,6 +166,29 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                   )}
                 </>
               </tbody>
+              <tfoot
+                className={`bg-[#2B161B] ${
+                  rowCounter % 2 == 0
+                    ? "bg-white dark:bg-gray-800"
+                    : "bg-gray-100 dark:bg-gray-700"
+                }`}
+              >
+                <tr className="font-semibold text-gray-900 dark:text-white">
+                  <td
+                    scope="row"
+                    colSpan={7}
+                    className="px-6 py-4 font-semibold w-1 text-left text-gray-900 whitespace-nowrap dark:text-white transition-all"
+                  >
+                    <Link
+                      href={
+                        "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
+                      }
+                    >
+                      Źródło danych
+                    </Link>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           );
         })}
