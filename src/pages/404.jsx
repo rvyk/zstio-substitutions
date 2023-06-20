@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ThemeChanger from "./components/ThemeChanger";
+import Navbar from "./components/Navbar";
 import Link from "next/link";
 function NotFound() {
   const [currentPath, setCurrentPath] = useState("");
@@ -9,7 +9,7 @@ function NotFound() {
   }, []);
   return (
     <>
-      <ThemeChanger />
+      <Navbar />
       <section className="min-h-screen w-screen flex flex-col justify-center items-center bg-[#F7F3F5] dark:bg-gray-900 transition-all">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 transition-all">
           <div className="mx-auto max-w-screen-sm text-center">

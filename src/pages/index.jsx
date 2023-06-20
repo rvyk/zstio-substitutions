@@ -6,7 +6,7 @@ import axios from "axios";
 import { parse } from "node-html-parser";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
-import ThemeChanger from "./components/ThemeChanger";
+import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import TableSkeleton from "./components/TableSkeleton";
 import DropdownBranch from "./components/DropdownBranch";
@@ -35,7 +35,7 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
-        <ThemeChanger />
+        <Navbar />
         <Jumbotron props={props} />
         <DropdownTeachers
           props={props}
@@ -65,6 +65,7 @@ export const getServerSideProps = async () => {
     const response = await axios.get(
       "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
     );
+    // const response = await axios.get("http://localhost:3000/test.html");
     const document = parse(response.data);
     const time = document.querySelector("h2").textContent.trim();
     const tables = Array.from(document.querySelectorAll("table")).map(
