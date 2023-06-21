@@ -1,12 +1,27 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function Jumbotron({ props }) {
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-      <h1 className="mb-4 transition-all text-4xl font-extrabold tracking-tight leading-none text-[#2B161B] md:text-5xl lg:text-6xl dark:text-white">
-        Zastępstwa ZSTIO
-      </h1>
-      <p className="mb-8 transition-all text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
+      <div className="flex justify-center items-center mb-4 md:mb-0 -ml-0 md:-ml-16">
+        <Link href={"https://zstiojar.edu.pl"} className="hidden md:block">
+          <Image
+            alt="logo"
+            width={120}
+            height={120}
+            className="w-auto h-auto"
+            src={
+              "https://zstiojar.edu.pl/wp-content/uploads/2023/03/cropped-zstio_godlo_logo-222x107.png"
+            }
+          />
+        </Link>
+        <h1 className="transition-all text-5xl font-extrabold tracking-tight leading-none text-[#2B161B] md:text-5xl lg:text-6xl dark:text-gray-100">
+          Zastępstwa
+        </h1>
+      </div>
+      <p className="md:my-4 mb-2 transition-all text-xl font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
         {props?.message ? props?.message : props?.form?.time}
       </p>
       {props?.form && (
