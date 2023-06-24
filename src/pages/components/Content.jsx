@@ -198,7 +198,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
         ) : (
           <div className="relative overflow-x-auto mb-10 shadow-md sm:rounded-lg w-[90%] transition-all">
             <div className="bg-white border-b flex justify-center items-center dark:bg-gray-800 dark:border-gray-700 transition-all">
-              <p className="px-6 py-4 font-semibold text-center text-gray-900 whitespace-nowrap dark:text-white transition-all">
+              <p className="px-6 py-4 font-semibold text-center text-gray-900 whitespace-nowrap dark:text-gray-100 transition-all">
                 Nie znaleziono żadnych zastępstw
               </p>
             </div>

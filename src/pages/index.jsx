@@ -7,10 +7,9 @@ import { parse } from "node-html-parser";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TableSkeleton from "./components/TableSkeleton";
 import DropdownBranch from "./components/DropdownBranch";
-import { initFlowbite } from "flowbite";
 
 export default function Home(props) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
@@ -21,13 +20,11 @@ export default function Home(props) {
   const handleCheckboxChangeBranch = (checkedItems) => {
     setCheckedBranches(checkedItems);
   };
-  useEffect(() => {
-    initFlowbite();
-  }, []);
+
   return (
     <>
       <Head>
-        <title>ZSTIO - Zastępstwa</title>
+        <title>ZSTiO - Zastępstwa</title>
         <meta
           name="description"
           content="Zastępstwa ZSTIO w odświeżonym stylu."
