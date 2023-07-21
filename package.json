@@ -18,7 +18,7 @@
     "next": "13.4.10",
     "next-themes": "^0.2.1",
     "node-html-parser": "^6.1.5",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-tooltip": "^5.18.0",
