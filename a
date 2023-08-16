@@ -1,0 +1,29 @@
+[1mdiff --git a/src/pages/index.jsx b/src/pages/index.jsx[m
+[1mindex 2b83e0d..b1e213f 100644[m
+[1m--- a/src/pages/index.jsx[m
+[1m+++ b/src/pages/index.jsx[m
+[36m@@ -57,7 +57,7 @@[m [mexport default function Home(props) {[m
+   );[m
+ }[m
+ [m
+[31m-export const getServerSideProps = async () => {[m
+[32m+[m[32mexport const getStaticProps = async () => {[m
+   try {[m
+     const response = await axios.get([m
+       "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"[m
+[36m@@ -105,13 +105,14 @@[m [mexport const getServerSideProps = async () => {[m
+ [m
+     const form = { time, tables };[m
+ [m
+[31m-    return { props: { form } };[m
+[32m+[m[32m    return { props: { form }, revalidate: 3600 };[m
+   } catch (error) {[m
+     return {[m
+       props: {[m
+         error: true,[m
+         message: "Wystąpił błąd podczas pobierania zastępstw",[m
+       },[m
+[32m+[m[32m      revalidate: 3600,[m
+     };[m
+   }[m
+ };[m

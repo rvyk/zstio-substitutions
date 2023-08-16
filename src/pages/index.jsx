@@ -57,7 +57,7 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
     const response = await axios.get(
       "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
@@ -105,13 +105,14 @@ export const getServerSideProps = async () => {
 
     const form = { time, tables };
 
-    return { props: { form } };
+    return { props: { form }, revalidate: 3600 };
   } catch (error) {
     return {
       props: {
         error: true,
         message: "Wystąpił błąd podczas pobierania zastępstw",
       },
+      revalidate: 3600,
     };
   }
 };
