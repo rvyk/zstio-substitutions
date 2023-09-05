@@ -4,8 +4,7 @@ module.exports = {
     "./node_modules/flowbite-react/**/*.js",
     "./src/pages/**/*.{ts,tsx, js, jsx}",
     "./src/pages/*.jsx",
-    "./src/pages/components/*.jsx",
-    "./src/pages/utils/*.jsx",
+    "./src/components/*.jsx",
     "./public/**/*.html",
   ],
   safelist: [

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar";
 import Link from "next/link";
 function NotFound() {
   const [currentPath, setCurrentPath] = useState("");

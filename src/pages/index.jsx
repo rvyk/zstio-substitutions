@@ -1,15 +1,15 @@
 import Head from "next/head";
-import Jumbotron from "./components/Jumbotron";
-import DropdownTeachers from "./components/DropdownTeachers";
-import Content from "./components/Content";
+import Jumbotron from "../components/Jumbotron";
+import DropdownTeachers from "../components/DropdownTeachers";
+import Content from "../components/Content";
 import axios from "axios";
 import { parse } from "node-html-parser";
-import Layout from "./components/Layout";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Layout from "../components/Layout";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { useState } from "react";
-import TableSkeleton from "./components/TableSkeleton";
-import DropdownBranch from "./components/DropdownBranch";
+import TableSkeleton from "../components/TableSkeleton";
+import DropdownBranch from "../components/DropdownBranch";
 
 export default function Home(props) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
