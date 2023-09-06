@@ -119,7 +119,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                       rowCounter++;
                       return (
                         <tr
-                          className={`${
+                          className={`text-gray-600 dark:text-gray-300 ${
                             rowCounter % 2 != 0
                               ? "bg-white dark:bg-gray-800"
                               : "bg-gray-50 dark:bg-gray-700"
@@ -133,22 +133,22 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                             {zastepstwo?.lesson}
                           </td>
 
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.teacher}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.branch}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.subject}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.class}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.case}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                          <td className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-gray-600 ">
                             {zastepstwo?.message}
                           </td>
                         </tr>
