@@ -56,9 +56,11 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const host = context.req.headers.host;
+  const protocol = host === "localhost:3000" ? "http" : "https";
   const apiResponse = await axios.get(
-    `${process.env.API_URL}/api/getSubstitutions`
+    `${protocol}://${host}/api/getSubstitutions`
   );
 
   if (apiResponse.status === 200) {
