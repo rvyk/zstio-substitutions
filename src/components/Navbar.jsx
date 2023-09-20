@@ -5,19 +5,25 @@ import React, { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 function Navbar() {
+  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  const toggleTheme = () => {
+    if (theme === "system") {
+      setTheme(systemTheme === "light" ? "dark" : "light");
+      return;
+    }
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
-
-  if (!isMounted) return null;
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="w-screen h-14 block lg:absolute top-0">
