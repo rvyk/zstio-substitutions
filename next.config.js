@@ -6,8 +6,8 @@ const nextConfig = {
     domains: ["zstiojar.edu.pl"],
   },
   i18n: {
-    locales: ['pl'],
-    defaultLocale: 'pl',
+    locales: ["pl"],
+    defaultLocale: "pl",
     localeDetection: false,
   },
 };
