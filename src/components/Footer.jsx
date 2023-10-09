@@ -38,7 +38,7 @@ function Footer() {
               <br />
               <Link
                 target="_blank"
-                href={"https://github.com/rvyk/zstio-timetable/"}
+                href={"https://github.com/rvyk/zstio-substitutions/"}
               >
                 GitHub (GPLv3)
               </Link>
