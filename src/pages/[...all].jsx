@@ -6,7 +6,7 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableSkeleton from "../components/TableSkeleton";
 import DropdownBranch from "../components/DropdownBranch";
 
