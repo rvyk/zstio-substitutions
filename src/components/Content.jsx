@@ -98,7 +98,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                             rowCounter % 2 != 0
                               ? "bg-white dark:bg-gray-800"
                               : "bg-gray-50 dark:bg-gray-700"
-                          }  border-b dark:border-gray-700 transition-all`}
+                          }  border-b dark:border-gray-600 transition-all`}
                           key={index}
                         >
                           <td
