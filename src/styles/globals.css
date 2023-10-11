@@ -10,8 +10,8 @@ body {
 
 /* Scrollbar styles for light theme */
 *::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar-track {
