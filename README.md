@@ -1,10 +1,27 @@
-# Substitutions ZSTIO
+# Substitutions ZSTiO
 
 A refreshed version of the [substitution page](http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html) for [Zespół Szkół Technicznych i Ogólnokształcących](https://zstiojar.edu.pl/), operated by Web Scrapping.
 
 ## Tech Stack
 
 - Next.js, React, TailwindCSS, Flowbite
+
+## API Reference
+
+#### Get substitutions
+
+```http
+  GET /api/getSubstitutions
+```
+
+#### The above URL returns all substitutions from the current day.
+
+#### To the url above, you can add the following parameters:
+
+| Parameters (Optional)            | Description                                                                                                 |
+| :------------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| `?search=branch&query=2tp`       | Returns a substitute for the class specified in `query`                                                     |
+| `?search=teacher&query=kowalski` | Returns teacher substitutions, specified in `query`. The value in `query`, for example, can be just a name. |
 
 ## Links
 

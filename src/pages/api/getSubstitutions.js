@@ -1,5 +1,5 @@
 import axios from "axios";
-import {load} from "cheerio";
+import { load } from "cheerio";
 
 export default async (req, res) => {
   try {
@@ -31,7 +31,11 @@ export default async (req, res) => {
           if (req?.query?.search && req?.query?.query) {
             switch (req?.query?.search) {
               case "teacher":
-                if (teacher?.toLowerCase()?.includes(req?.query?.query?.toLowerCase())) {
+                if (
+                  teacher
+                    ?.toLowerCase()
+                    ?.includes(req?.query?.query?.toLowerCase())
+                ) {
                   zastepstwa.push({
                     lesson,
                     teacher,
@@ -42,9 +46,13 @@ export default async (req, res) => {
                     message,
                   });
                 }
-                break
+                break;
               case "branch":
-                if (branch?.toLowerCase()?.includes(req?.query?.query?.toLowerCase())) {
+                if (
+                  branch
+                    ?.toLowerCase()
+                    ?.includes(req?.query?.query?.toLowerCase())
+                ) {
                   zastepstwa.push({
                     lesson,
                     teacher,
@@ -55,7 +63,7 @@ export default async (req, res) => {
                     message,
                   });
                 }
-                break
+                break;
               default:
                 zastepstwa.push({
                   lesson,
@@ -87,10 +95,9 @@ export default async (req, res) => {
       });
     });
 
-    res.status(200).json({time, tables});
-
+    res.status(200).json({ time, tables });
   } catch (error) {
     console.error(error);
-    res.status(500).json({error: "Something went wrong"});
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
