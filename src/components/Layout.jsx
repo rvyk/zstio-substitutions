@@ -6,7 +6,7 @@ function Layout({ children }) {
     initFlowbite();
   }, []);
   return (
-    <div className="min-h-screen w-screen flex flex-col justify-center items-center bg-[#F7F3F5] dark:bg-gray-900 transition-all">
+    <div className="min-h-screen w-screen flex flex-col justify-center items-center bg-[#F7F3F5] dark:bg-[#171717] transition-all">
       {children}
     </div>
   );
