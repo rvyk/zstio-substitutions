@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 function Footer() {
-  const { theme, resolvedTheme, systemTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -19,9 +19,7 @@ function Footer() {
           <a href="https://skillhost.pl/?pk_source=plan-lekcji" target="_blank">
             <img
               src={
-                theme == "light" || systemTheme == "light"
-                  ? "/skill-light.png"
-                  : "/skill-dark.png"
+                resolvedTheme == "dark" ? "/skill-dark.png" : "/skill-light.png"
               }
               className="h-24"
               alt="skill-host-logo"
