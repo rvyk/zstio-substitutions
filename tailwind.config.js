@@ -1,12 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./node_modules/flowbite-react/**/*.js",
-    "./src/pages/**/*.{ts,tsx, js, jsx}",
-    "./src/pages/*.jsx",
-    "./src/components/*.jsx",
-    "./public/**/*.html",
-  ],
+  content: ["./node_modules/flowbite-react/**/*.js", "./src/**/*.tsx"],
   safelist: [
     "animate-[fade-in_1s_ease-in-out]",
     "animate-[fade-in-down_1s_ease-in-out]",

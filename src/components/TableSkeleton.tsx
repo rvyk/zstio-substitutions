@@ -20,7 +20,7 @@ function TableSkeleton() {
                 Nauczyciel
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3 h-3 ml-1"
+                  className="w-3 h-3 ml-1"
                   aria-hidden="true"
                   fill="currentColor"
                   viewBox="0 0 320 512"
@@ -47,51 +47,21 @@ function TableSkeleton() {
           </tr>
         </thead>
         <tbody className="transition-all">
-          {[...Array(3)].map((_, index) => (
+          {[...Array(5)].map((_, index) => (
             <tr
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 transition-all"
               key={index}
             >
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium w-1 text-gray-900 whitespace-nowrap dark:text-white transition-all"
-              >
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-                </div>
-              </th>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div
-                    className={`h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5`}
-                  ></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[80px] mb-2.5"></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[400px] mb-2.5"></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[100px] mb-2.5"></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 break-words w-24">
-                <div role="status" className="max-w-sm animate-pulse">
-                  <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
-                </div>
-              </td>
+              {[...Array(7)].map((_, index) => (
+                <td
+                  key={index}
+                  className="px-6 py-4 break-words w-16 border-r last:border-none font-semibold dark:border-[#171717]"
+                >
+                  <div role="status" className="max-w-sm animate-pulse">
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-[#292929] mb-2.5"></div>
+                  </div>
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

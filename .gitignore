@@ -6,7 +6,5 @@
 *.pem
 .env
 .vercel
-
-yarn.lock
 /.github/
 /.idea/

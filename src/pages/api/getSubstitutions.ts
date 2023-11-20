@@ -1,7 +1,11 @@
 import axios from "axios";
 import { load } from "cheerio";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     const response = await axios.get(
       "http://kristofc.webd.pro/plan/InformacjeOZastepstwach.html"
@@ -9,11 +13,11 @@ export default async (req, res) => {
 
     const $ = load(response.data);
     const time = $("h2").text().trim();
-    const tables = [];
+    const tables: tables[] = [];
 
     $("table").each((index, table) => {
       const rows = $(table).find("tr");
-      const zastepstwa = [];
+      const zastepstwa: substitutions[] = [];
 
       rows.slice(1).each((i, row) => {
         const columns = $(row).find("td");
@@ -34,7 +38,7 @@ export default async (req, res) => {
                 if (
                   teacher
                     ?.toLowerCase()
-                    ?.includes(req?.query?.query?.toLowerCase())
+                    ?.includes(req?.query?.query[0]?.toLowerCase())
                 ) {
                   zastepstwa.push({
                     lesson,
@@ -51,7 +55,7 @@ export default async (req, res) => {
                 if (
                   branch
                     ?.toLowerCase()
-                    ?.includes(req?.query?.query?.toLowerCase())
+                    ?.includes(req?.query?.query[0]?.toLowerCase())
                 ) {
                   zastepstwa.push({
                     lesson,
@@ -100,4 +104,4 @@ export default async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Something went wrong" });
   }
-};
+}

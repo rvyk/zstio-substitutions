@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
@@ -39,12 +40,16 @@ function Navbar() {
   return (
     <div className="w-screen h-14 block lg:absolute top-0">
       <div className="absolute top-2 left-2 z-50 md:hidden transition-all">
-        <Link href={"https://zstiojar.edu.pl"}>
-          <img
-            alt="logo"
-            className="w-20 h-20 mr-4"
-            src={"/icon-192x192.png"}
-          />
+        <Link prefetch={false} href={"https://zstiojar.edu.pl"}>
+          <div className="relative w-14 h-14 mr-2 object-contain">
+            <Image
+              alt="logo"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              src={"/icon-192x192.png"}
+            />
+          </div>
         </Link>
       </div>
       {resolvedTheme != undefined && (

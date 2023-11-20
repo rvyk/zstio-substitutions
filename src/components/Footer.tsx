@@ -1,8 +1,6 @@
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 function Footer() {
-  const { resolvedTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

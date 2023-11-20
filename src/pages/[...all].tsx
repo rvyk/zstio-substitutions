@@ -6,11 +6,12 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TableSkeleton from "../components/TableSkeleton";
 import DropdownBranch from "../components/DropdownBranch";
+import { GetServerSideProps } from "next";
 
-export default function Home(props) {
+export default function Home({ ...props }) {
   const [checkedTeachers, setCheckedTeachers] = useState([]);
   const [checkedBranches, setCheckedBranches] = useState([]);
   const handleCheckboxChange = (checkedItems) => {
@@ -56,7 +57,7 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const host = context.req.headers.host;
   const protocol = host === "localhost:3000" ? "http" : "https";
   const apiResponse = await axios.get(

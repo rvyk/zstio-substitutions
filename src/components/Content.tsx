@@ -1,7 +1,9 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 function Content({ props, checkedTeachers, checkedBranches }) {
-  let filtersTeachers, filtersBranches;
+  const router = useRouter();
+  let filtersTeachers: Array<string>, filtersBranches: Array<string>;
   if (checkedTeachers) {
     filtersTeachers = Object.keys(checkedTeachers).filter(
       (key) => checkedTeachers[key]
@@ -28,7 +30,7 @@ function Content({ props, checkedTeachers, checkedBranches }) {
     <>
       {props?.form?.tables?.length > 0 ? (
         <div className="relative overflow-x-auto shadow-md sm:rounded-xl w-[90%] transition-all duration-100">
-          {props?.form?.tables.map((table, index) => {
+          {props?.form?.tables.map((table: tables, index: number) => {
             return (
               <table
                 className="w-full text-sm text-left transition-all duration-200 text-gray-500 dark:text-gray-300"
@@ -49,13 +51,44 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                           <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
                         </svg>
                         <p className="mr-2">Filtry: </p>
+                        <button
+                          onClick={() => {
+                            router
+                              .replace("/zastepstwa", undefined, {
+                                shallow: true,
+                              })
+                              .then(() => {
+                                router.reload();
+                              });
+                          }}
+                          className="cursor-pointer justify-center inline-flex items-center transition-all px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded dark:bg-blue-100 dark:text-blue-800 "
+                        >
+                          Wyczyść filtry
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="w-4 h-4"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
                         {Object.entries({
                           ...checkedTeachers,
                           ...checkedBranches,
                         }).map(
                           ([item, checked]) =>
                             checked && (
-                              <span className="inline-flex items-center transition-all px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-red-100 dark:text-red-800 ">
+                              <span
+                                key={item}
+                                className="inline-flex items-center transition-all px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-red-100 dark:text-red-800 "
+                              >
                                 {item}
                               </span>
                             )
@@ -76,53 +109,55 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                   </tr>
                 </thead>
                 <tbody className="transition-all">
-                  {table?.zastepstwa?.map((zastepstwo, index) => {
-                    if (
-                      (filtersTeachers?.includes(zastepstwo?.teacher) &&
-                        filtersBranches?.includes(zastepstwo?.branch)) ||
-                      (filtersTeachers?.includes(zastepstwo?.teacher) &&
-                        filtersBranches?.length === 0) ||
-                      (filtersBranches?.includes(zastepstwo?.branch) &&
-                        filtersTeachers?.length === 0) ||
-                      (filtersBranches?.length === 0 &&
-                        filtersTeachers?.length === 0)
-                    ) {
-                      rowCounter++;
-                      return (
-                        <tr
-                          className={`text-gray-600 dark:text-gray-300 border-b ${
-                            rowCounter % 2 === 0
-                              ? "bg-white dark:bg-[#191919]"
-                              : "bg-gray-50 dark:bg-[#202020]"
-                          } dark:border-[#181818] `}
-                          key={index}
-                        >
-                          <td
-                            className={`py-4 px-4 text-center h-full border-r last:border-none font-semibold dark:border-[#171717]`}
-                            style={{ whiteSpace: "nowrap" }}
+                  {table?.zastepstwa?.map(
+                    (substitution: substitutions, index: number) => {
+                      if (
+                        (filtersTeachers?.includes(substitution?.teacher) &&
+                          filtersBranches?.includes(substitution?.branch)) ||
+                        (filtersTeachers?.includes(substitution?.teacher) &&
+                          filtersBranches?.length === 0) ||
+                        (filtersBranches?.includes(substitution?.branch) &&
+                          filtersTeachers?.length === 0) ||
+                        (filtersBranches?.length === 0 &&
+                          filtersTeachers?.length === 0)
+                      ) {
+                        rowCounter++;
+                        return (
+                          <tr
+                            className={`text-gray-600 dark:text-gray-300 border-b ${
+                              rowCounter % 2 === 0
+                                ? "bg-white dark:bg-[#191919]"
+                                : "bg-gray-50 dark:bg-[#202020]"
+                            } dark:border-[#181818] `}
+                            key={index}
                           >
-                            {zastepstwo?.lesson}
-                          </td>
-
-                          {[
-                            "teacher",
-                            "branch",
-                            "subject",
-                            "class",
-                            "case",
-                            "message",
-                          ].map((field) => (
                             <td
-                              key={field}
-                              className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-[#171717]"
+                              className={`py-4 px-4 text-center h-full border-r last:border-none font-semibold dark:border-[#171717]`}
+                              style={{ whiteSpace: "nowrap" }}
                             >
-                              {zastepstwo?.[field]}
+                              {substitution?.lesson}
                             </td>
-                          ))}
-                        </tr>
-                      );
+
+                            {[
+                              "teacher",
+                              "branch",
+                              "subject",
+                              "class",
+                              "case",
+                              "message",
+                            ].map((field) => (
+                              <td
+                                key={field}
+                                className="px-6 py-4 whitespace-nowrap border-r last:border-none dark:border-[#171717]"
+                              >
+                                {substitution?.[field]}
+                              </td>
+                            ))}
+                          </tr>
+                        );
+                      }
                     }
-                  })}
+                  )}
 
                   <>
                     {rowCounter == 0 && (

@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["zstiojar.edu.pl"],
+    remotePatterns: [{ hostname: "zstiojar.edu.pl" }],
   },
   i18n: {
     locales: ["pl"],

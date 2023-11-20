@@ -1,24 +1,23 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { handleCheckboxChange } from "../libs/handleCheckboxChange";
+import { getQueryItems } from "../libs/getQueryItems";
 
 function DropdownBranch({ props, onCheckboxChangeBranch }) {
   const [searchBranch, setSearchBranch] = useState("");
+  const [checkedItems, setCheckedItems] = useState({});
+  const router = useRouter();
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBranch(event.target.value);
   };
 
-  const filterBranches = (branch) => {
+  useEffect(() => {
+    getQueryItems("branches", router, setCheckedItems);
+  }, [router.query, router]);
+
+  const filterBranches = (branch: string) => {
     return branch.toLowerCase().includes(searchBranch.toLowerCase());
-  };
-
-  const [checkedItems, setCheckedItems] = useState({});
-
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckedItems((prevCheckedItems) => ({
-      ...prevCheckedItems,
-      [name]: checked,
-    }));
   };
 
   useEffect(() => {
@@ -29,6 +28,7 @@ function DropdownBranch({ props, onCheckboxChangeBranch }) {
     <div
       id="dropdownBranch"
       className="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-[#161616]"
+      suppressHydrationWarning={true}
     >
       <div className="p-3">
         <div className="relative">
@@ -62,9 +62,9 @@ function DropdownBranch({ props, onCheckboxChangeBranch }) {
         className="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-300"
         aria-labelledby="dropdownSearchBranch"
       >
-        {props?.form?.tables.map((table) => {
-          const uniqueBranches = [];
-          table.zastepstwa.forEach((item) => {
+        {props?.form?.tables.map((table: tables) => {
+          const uniqueBranches: Array<string> = [];
+          table.zastepstwa.forEach((item: substitutions) => {
             const isBranchExist = uniqueBranches.some(
               (branch) => branch === item.branch
             );
@@ -76,17 +76,24 @@ function DropdownBranch({ props, onCheckboxChangeBranch }) {
           uniqueBranches.sort((a, b) => a.charAt(0).localeCompare(b.charAt(0)));
 
           return (
-            <>
+            <div key={table.time}>
               {uniqueBranches.filter(filterBranches).map((branch, index) => (
-                <li key={index}>
+                <li key={uniqueBranches[index]}>
                   <div className="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-[#202020] ">
                     <input
                       id={`${branch.replace(" ", "-")}`}
                       type="checkbox"
                       name={branch}
                       checked={checkedItems[branch] || false}
-                      onChange={handleCheckboxChange}
-                      className="w-4 h-4 text-blue-600 dark:text-[#282828] bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-[#171717] dark:ring-offset-[#171717] dark:focus:ring-offset-[#171717] focus:ring-2 dark:bg-[#202020] dark:border-[#202020]"
+                      onChange={(e) =>
+                        handleCheckboxChange(
+                          e,
+                          "branches",
+                          router,
+                          setCheckedItems
+                        )
+                      }
+                      className="w-4 h-4 text-blue-600 dark:text-[#282828] bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-[#171717] dark:ring-offset-[#171717] dark:focus:ring-offset-[#171717] focus:ring-2 dark:bg-[#282828] dark:border-[#202020]"
                     />
                     <label
                       htmlFor={`${branch.replace(" ", "-")}`}
@@ -97,7 +104,7 @@ function DropdownBranch({ props, onCheckboxChangeBranch }) {
                   </div>
                 </li>
               ))}
-            </>
+            </div>
           );
         })}
       </ul>
