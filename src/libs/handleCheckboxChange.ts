@@ -31,11 +31,15 @@ export const handleCheckboxChange = (
 
   const updatedList = currentListArray.filter(Boolean).join(",");
 
-  router.push({
-    pathname: router.pathname,
-    query: {
-      ...router.query,
-      [type]: updatedList || undefined,
+  router.replace(
+    {
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        [type]: updatedList || undefined,
+      },
     },
-  });
+    undefined,
+    { shallow: true }
+  );
 };
