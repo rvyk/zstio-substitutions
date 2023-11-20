@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 function Content({ props, checkedTeachers, checkedBranches }) {
+  const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
   let filtersTeachers: Array<string>, filtersBranches: Array<string>;
   if (checkedTeachers) {
@@ -24,6 +25,34 @@ function Content({ props, checkedTeachers, checkedBranches }) {
     "Zastępca",
     "Uwagi",
   ];
+
+  const handleShare = async () => {
+    try {
+      if (navigator?.share) {
+        await navigator.share({
+          title: "Zastępstwa ZSTiO",
+          url: window?.location?.href,
+        });
+        setIsCopied(true);
+      } else {
+        await navigator.clipboard.writeText(window?.location?.href);
+        setIsCopied(true);
+      }
+    } catch (error) {
+      console.error("Błąd podczas udostępniania linku:", error);
+    }
+  };
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isCopied) {
+      timeout = setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [isCopied]);
 
   let rowCounter = 0;
   return (
@@ -52,6 +81,43 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                         </svg>
                         <p className="mr-2">Filtry: </p>
                         <button
+                          onClick={handleShare}
+                          className="cursor-pointer justify-center inline-flex items-center transition-all px-2 py-1 mr-2 text-sm font-medium text-red-900 bg-red-300 rounded dark:bg-blue-300 dark:text-blue-900 "
+                        >
+                          {isCopied ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-5 h-5"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4.5 12.75l6 6 9-13.5"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-5 h-5"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                              />
+                            </svg>
+                          )}
+                        </button>
+
+                        <button
                           onClick={() => {
                             router
                               .replace("/zastepstwa", undefined, {
@@ -68,13 +134,13 @@ function Content({ props, checkedTeachers, checkedBranches }) {
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke-width="1.5"
+                            strokeWidth="1.5"
                             stroke="currentColor"
                             className="w-4 h-4"
                           >
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               d="M6 18L18 6M6 6l12 12"
                             />
                           </svg>

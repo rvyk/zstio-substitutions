@@ -38,7 +38,7 @@ export default async function handler(
                 if (
                   teacher
                     ?.toLowerCase()
-                    ?.includes(req?.query?.query[0]?.toLowerCase())
+                    ?.includes(req?.query?.query?.toString().toLowerCase())
                 ) {
                   zastepstwa.push({
                     lesson,
@@ -55,7 +55,7 @@ export default async function handler(
                 if (
                   branch
                     ?.toLowerCase()
-                    ?.includes(req?.query?.query[0]?.toLowerCase())
+                    ?.includes(req?.query?.query?.toString().toLowerCase())
                 ) {
                   zastepstwa.push({
                     lesson,
