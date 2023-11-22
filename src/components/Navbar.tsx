@@ -17,7 +17,7 @@ function Navbar() {
     setTheme(newTheme);
     document.cookie = `selectedTheme=${newTheme}; path=/; domain=${(window?.location?.hostname)
       .split(".")
-      .slice(-2)
+      .slice(-3)
       .join(".")};`;
   };
 
